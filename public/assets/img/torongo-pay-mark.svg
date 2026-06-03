@@ -1,0 +1,10 @@
+<svg width="118" height="118" viewBox="0 0 118 118" role="img" aria-labelledby="title desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="title">Torongo Pay mark</title>
+  <desc id="desc">Contactless payment wave icon for Torongo Pay.</desc>
+  <rect width="118" height="118" rx="22" fill="#050E1A"/>
+  <rect x=".25" y=".25" width="117.5" height="117.5" rx="21.75" fill="none" stroke="#17D9A4" stroke-width=".5" stroke-opacity=".3"/>
+  <circle cx="53" cy="59" r="6.5" fill="#17D9A4"/>
+  <path d="M53 41a18 18 0 0 1 0 36" fill="none" stroke="#17D9A4" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M53 27a32 32 0 0 1 0 64" fill="none" stroke="#17D9A4" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+  <path d="M53 13a46 46 0 0 1 0 92" fill="none" stroke="#17D9A4" stroke-width="2" stroke-linecap="round" opacity=".28"/>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#8e2c95"/>
+  <g fill="#fff">
+    <path d="M232 147 L394 37 L345 248 L302 179 L252 224 L286 152 L251 185 Z"/>
+    <text x="88" y="249" font-family="Arial Black, Arial, sans-serif" font-size="50" font-weight="900">ROCKET</text>
+    <text x="48" y="384" font-family="'Noto Sans Bengali', 'Hind Siliguri', Arial, sans-serif" font-size="137" font-weight="900">রকেট</text>
+    <ellipse cx="111" cy="426" rx="22" ry="35"/>
+    <text x="138" y="454" font-family="'Noto Sans Bengali', 'Hind Siliguri', Arial, sans-serif" font-size="27" font-weight="800">ডাচ্-বাংলা ব্যাংক মোবাইল ব্যাংকিং</text>
+  </g>
+</svg>

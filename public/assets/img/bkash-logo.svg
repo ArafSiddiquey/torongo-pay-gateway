@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400">
+  <rect width="700" height="400" fill="#fff"/>
+  <text x="50" y="235" font-family="Georgia, 'Times New Roman', serif" font-size="118" fill="#111" letter-spacing="-2">bKash</text>
+  <text x="50" y="235" font-family="Georgia, 'Times New Roman', serif" font-size="118" fill="#d71965" letter-spacing="-2">b</text>
+  <g transform="translate(350 58)">
+    <path d="M20 0 L175 45 L95 102 Z" fill="#d51a5a"/>
+    <path d="M95 102 L175 45 L260 103 L158 124 Z" fill="#ed1671"/>
+    <path d="M95 102 L158 124 L68 275 Z" fill="#9d153f"/>
+    <path d="M175 45 L282 68 L260 103 Z" fill="#cf145d"/>
+    <path d="M0 48 L20 0 L42 72 Z" fill="#9a143d"/>
+    <path d="M158 124 L260 103 L217 178 Z" fill="#c9165b"/>
+  </g>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+  <rect x="4" y="4" width="632" height="632" rx="42" fill="#fff" stroke="#ff9518" stroke-width="8"/>
+  <g transform="translate(36 176) scale(1.18)">
+    <circle cx="112" cy="112" r="96" fill="none" stroke="#f51d25" stroke-width="34"/>
+    <path d="M66 151 C66 78 124 25 186 20 L194 80 C151 76 104 96 66 151Z" fill="#ff9518"/>
+    <path d="M99 134 C133 83 185 83 232 107 L188 166 C158 145 132 133 99 134Z" fill="#ff9518"/>
+    <circle cx="112" cy="112" r="34" fill="#fff3cf"/>
+    <path d="M118 102 l-35 17 41 6 -13 31 32-39 -39-6z" fill="#f51d25" opacity=".9"/>
+    <text x="250" y="151" font-family="'Noto Sans Bengali', 'Hind Siliguri', Arial, sans-serif" font-size="116" font-weight="900" fill="#ef1c25">নগদ</text>
+  </g>
+</svg>
