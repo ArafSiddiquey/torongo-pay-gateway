@@ -495,6 +495,7 @@ class AdminController extends Controller
             'payment_sms_delivery_scope',
             'payment_sms_brand',
             'payment_sms_contact_url',
+            'support_phone_number',
             'payment_sms_template',
             'google_admin_email',
             'google_client_id',

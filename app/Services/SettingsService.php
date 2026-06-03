@@ -31,6 +31,7 @@ class SettingsService
                 'google_admin_email' => env('GOOGLE_ADMIN_EMAIL', $default),
                 'payment_sms_brand' => env('PAYMENT_SMS_BRAND', $default),
                 'payment_sms_contact_url' => env('PAYMENT_SMS_CONTACT_URL', $default),
+                'support_phone_number' => env('SUPPORT_PHONE_NUMBER', $default),
                 'payment_sms_template' => env('PAYMENT_SMS_TEMPLATE', $default),
                 'payment_sms_delivery_scope' => env('PAYMENT_SMS_DELIVERY_SCOPE', $default),
                 default => $default,

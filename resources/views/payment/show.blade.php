@@ -2,11 +2,20 @@
 @section('content')
 @php
     $checkoutBaseAmount = (float) ($transaction->metadata['product_amount'] ?? $transaction->amount);
+    $supportContactUrl = trim((string) $settings->get('payment_sms_contact_url', ''));
+    $supportContactUrl = $supportContactUrl !== '' ? $supportContactUrl : '#';
+    $supportPhoneDigits = preg_replace('/\D+/', '', trim((string) $settings->get('support_phone_number', '')));
+    $supportPhoneUrl = '#';
+    if ($supportPhoneDigits !== '') {
+        $supportPhoneUrl = str_starts_with($supportPhoneDigits, '880')
+            ? 'tel:+'.$supportPhoneDigits
+            : (str_starts_with($supportPhoneDigits, '01') ? 'tel:+88'.$supportPhoneDigits : 'tel:+'.$supportPhoneDigits);
+    }
 @endphp
 <main class="checkout">
     <section class="gateway-card">
         <div class="topbar">
-            <button type="button" onclick="location.href='/'" aria-label="Home"><svg viewBox="0 0 32 32"><path d="M6 15.5L16 7l10 8.5"/><path d="M9 14v12h14V14"/><path d="M13 26v-7h6v7"/></svg></button>
+            <button type="button" aria-label="Home"><svg viewBox="0 0 32 32"><path d="M6 15.5L16 7l10 8.5"/><path d="M9 14v12h14V14"/><path d="M13 26v-7h6v7"/></svg></button>
             <button type="button" onclick="window.close()" aria-label="Close"><svg viewBox="0 0 32 32"><path d="M9 9l14 14"/><path d="M23 9L9 23"/></svg></button>
         </div>
         <div class="brand-row">
@@ -22,8 +31,8 @@
             <div class="row"><span>Merchant</span><b>{{ $settings->get('gateway_name', 'Online Shop') }}</b></div>
         </div>
         <div class="support">
-            <button type="button" class="whatsapp" title="WhatsApp"><img src="{{ asset('assets/img/support-whatsapp.jpg') }}" alt="WhatsApp"><span>WhatsApp</span></button>
-            <button type="button" class="phone" title="Phone" onclick="document.getElementById('details').classList.toggle('show')"><img src="{{ asset('assets/img/support-call-v2.png') }}" alt="Phone"><span>Phone</span></button>
+            <a class="whatsapp" title="WhatsApp" href="{{ $supportContactUrl }}" target="_blank" rel="noopener"><img src="{{ asset('assets/img/support-whatsapp.jpg') }}" alt="WhatsApp"><span>WhatsApp</span></a>
+            <a class="phone" title="Phone" href="{{ $supportPhoneUrl }}"><img src="{{ asset('assets/img/support-call-v2.png') }}" alt="Phone"><span>Phone</span></a>
         </div>
         @if($errors->any())<div class="errors">{{ $errors->first() }}</div>@endif
         <div class="method-tabs" role="tablist" aria-label="Payment categories">

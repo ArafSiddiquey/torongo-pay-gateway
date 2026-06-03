@@ -5,7 +5,6 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Payment\GatewayController;
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('/', '/admin/login');
 Route::get('/invoice-{transaction:invoice_id}', [GatewayController::class, 'show'])->name('payment.invoice');
 Route::get('/invoice-{transaction:invoice_id}/download', [GatewayController::class, 'downloadPdf'])->name('payment.invoice.download');
 Route::get('/pay/{transaction:invoice_id}', [GatewayController::class, 'show'])->name('payment.show');
@@ -17,7 +16,7 @@ Route::post('/pay/{transaction:invoice_id}/hold', [GatewayController::class, 'ho
 Route::post('/pay/{transaction:invoice_id}/manual', [GatewayController::class, 'manualVerify'])->name('payment.manual');
 Route::post('/pay/{transaction:invoice_id}/remittance-contact', [GatewayController::class, 'remittanceContact'])->name('payment.remittance.contact');
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix(env('ADMIN_ROUTE_PREFIX', 'torongo-secure-vault-9k'))->name('admin.')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::get('/auth/google', [AuthController::class, 'redirectToGoogle'])->name('google.redirect');
     Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback'])->name('google.callback');

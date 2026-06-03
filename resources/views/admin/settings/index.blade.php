@@ -141,6 +141,10 @@
                     <input name="payment_sms_contact_url" value="{{ old('payment_sms_contact_url', $settings['payment_sms_contact_url'] ?? 'https://wa.me/8801882398668') }}">
                 </div>
                 <div class="field full">
+                    <label>Support phone number</label>
+                    <input name="support_phone_number" value="{{ old('support_phone_number', $settings['support_phone_number'] ?? '') }}" placeholder="01640041418">
+                </div>
+                <div class="field full">
                     <label>Confirmation SMS template</label>
                     <textarea name="payment_sms_template" rows="6">{{ old('payment_sms_template', $settings['payment_sms_template'] ?? "Your payment of {amount} BDT has been confirmed.\nThank you for choosing our service. If you have not received your order yet, please contact our support team through the link below and we will assist you as soon as possible.\n\nWhatsApp Support: {contact_url}\n\n— {brand}") }}</textarea>
                     <p class="hint">Available variables: {brand}, {contact_url}, {invoice_id}, {amount}, {trx_id}</p>
