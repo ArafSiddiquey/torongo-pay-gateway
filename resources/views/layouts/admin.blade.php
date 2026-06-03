@@ -32,6 +32,7 @@
 
             <div class="nav-group">Configuration</div>
             <a class="{{ request()->routeIs('admin.settings') ? 'active' : '' }}" href="{{ route('admin.settings') }}">Gateway Setup</a>
+            <a class="{{ request()->routeIs('admin.apps') ? 'active' : '' }}" href="{{ route('admin.apps') }}">Apps & Plugins</a>
         </nav>
         <form id="logoutForm" class="logout-wrap" method="post" action="{{ route('admin.logout') }}">@csrf<button class="logout">Logout</button></form>
     </aside>

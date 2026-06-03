@@ -36,6 +36,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/devices/status', [\App\Http\Controllers\Admin\DeviceController::class, 'status'])->name('devices.status');
         Route::resource('/devices', \App\Http\Controllers\Admin\DeviceController::class)->except(['show']);
         Route::get('/sms', [AdminController::class, 'sms'])->name('sms');
+        Route::get('/apps', [AdminController::class, 'apps'])->name('apps');
+        Route::get('/apps/{artifact}/download', [AdminController::class, 'downloadApp'])->name('apps.download');
         Route::get('/texts', [AdminController::class, 'texts'])->name('texts');
         Route::post('/texts', [AdminController::class, 'saveTexts'])->name('texts.save');
         Route::get('/settings', [AdminController::class, 'settings'])->name('settings');

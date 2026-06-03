@@ -1108,6 +1108,80 @@ td .btn {
 .device-setup-finish .hint {
     margin: 0;
 }
+.apps-panel {
+    display: grid;
+    gap: 24px;
+    border: 1px solid #344155;
+    border-radius: 8px;
+    background: #222d3c;
+    padding: 26px;
+}
+.apps-panel h2 {
+    margin: 0;
+    font-size: 24px;
+}
+.apps-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+.download-card {
+    min-height: 280px;
+    display: grid;
+    align-content: start;
+    gap: 18px;
+    border: 1px solid #344155;
+    border-radius: 8px;
+    background: #18202d;
+    padding: 26px;
+}
+.download-card h3 {
+    margin: 0;
+    font-size: 22px;
+}
+.download-card p {
+    margin: 10px 0 0;
+    color: var(--muted);
+    line-height: 1.55;
+    font-weight: 700;
+}
+.download-icon {
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    background: rgba(18, 152, 213, .18);
+    color: #35c8ff;
+    font-size: 24px;
+    font-weight: 950;
+}
+.download-icon.android { color: #48d987; }
+.download-icon.wordpress { color: #35c8ff; }
+.download-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.download-meta span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    border: 1px solid rgba(159, 177, 202, .22);
+    border-radius: 999px;
+    color: #c8d8ef;
+    background: rgba(159, 177, 202, .08);
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 850;
+}
+.download-card .btn {
+    width: fit-content;
+}
+.download-card .btn:disabled {
+    cursor: not-allowed;
+    opacity: .58;
+}
 .help-float { display: none; }
 @media (max-width: 1100px) {
     .grid { grid-template-columns: repeat(3, 1fr); }
@@ -1137,4 +1211,6 @@ td .btn {
     table { min-width: 760px; }
     .device-setup-card { grid-template-columns: 1fr; }
     .setup-copy-row { grid-template-columns: 1fr; }
+    .apps-grid { grid-template-columns: 1fr; }
+    .apps-panel { padding: 18px; }
 }

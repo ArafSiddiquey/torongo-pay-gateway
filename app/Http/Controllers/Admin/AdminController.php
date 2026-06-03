@@ -21,6 +21,27 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
+    private const APP_ARTIFACTS = [
+        'android-app' => [
+            'title' => 'Torongo Verify Android App',
+            'version' => 'Latest APK',
+            'description' => 'Android SMS reader and confirmation app for Torongo Pay devices.',
+            'icon' => 'android',
+            'path' => 'resources/downloads/torongo-verify-latest.apk',
+            'download_name' => 'torongo-verify-latest.apk',
+            'mime' => 'application/vnd.android.package-archive',
+        ],
+        'wordpress-plugin' => [
+            'title' => 'Torongo Pay WordPress Plugin',
+            'version' => 'v1.0.0',
+            'description' => 'WooCommerce gateway plugin for connecting WordPress checkout with Torongo Pay.',
+            'icon' => 'wordpress',
+            'path' => 'resources/downloads/torongo-pay-woocommerce.zip',
+            'download_name' => 'torongo-pay-woocommerce.zip',
+            'mime' => 'application/zip',
+        ],
+    ];
+
     public function dashboard()
     {
         $balanceSummaries = PaymentMethod::with(['transactions' => function ($query) {
@@ -137,6 +158,40 @@ class AdminController extends Controller
             ->withQueryString();
 
         return view('admin.invoices.index', compact('transactions', 'methods', 'perPage'));
+    }
+
+    public function apps()
+    {
+        $artifacts = collect(self::APP_ARTIFACTS)
+            ->map(function (array $artifact, string $key) {
+                $path = base_path($artifact['path']);
+                $exists = is_file($path);
+
+                return [
+                    ...$artifact,
+                    'key' => $key,
+                    'exists' => $exists,
+                    'size' => $exists ? $this->formatBytes(filesize($path)) : null,
+                    'updated_at' => $exists ? Carbon::createFromTimestamp(filemtime($path))->format('g:i A, j F y') : null,
+                ];
+            })
+            ->values();
+
+        return view('admin.apps.index', compact('artifacts'));
+    }
+
+    public function downloadApp(string $artifact)
+    {
+        abort_unless(array_key_exists($artifact, self::APP_ARTIFACTS), 404);
+
+        $download = self::APP_ARTIFACTS[$artifact];
+        $path = base_path($download['path']);
+
+        abort_unless(is_file($path), 404);
+
+        return response()->download($path, $download['download_name'], [
+            'Content-Type' => $download['mime'],
+        ]);
     }
 
     public function storeInvoice(Request $request, SettingsService $settings, SheetBackupService $sheet, ActivityLogger $log)
@@ -357,6 +412,18 @@ class AdminController extends Controller
         }
 
         return round((float) $query->sum('parsed_amount'), 2);
+    }
+
+    private function formatBytes(int|false $bytes): string
+    {
+        if ($bytes === false || $bytes <= 0) {
+            return '0 KB';
+        }
+
+        $units = ['B', 'KB', 'MB', 'GB'];
+        $power = min((int) floor(log($bytes, 1024)), count($units) - 1);
+
+        return round($bytes / (1024 ** $power), $power === 0 ? 0 : 1) . ' ' . $units[$power];
     }
 
     public function sms()
