@@ -722,6 +722,8 @@ class PaymentVerificationSecurityTest extends TestCase
 
         $this->assertSame(Transaction::STATUS_SUCCESS, $transaction->fresh()->status);
         $this->assertSame('SCREEN1234', $transaction->fresh()->trx_id);
+        $this->assertSame('01799999999', $transaction->fresh()->customer_number);
+        $this->assertSame('01799999999', $transaction->fresh()->officialSenderNumber());
     }
 
     public function test_manual_fallback_does_not_send_sms_when_submitted_number_does_not_match_sms_sender(): void
@@ -770,6 +772,8 @@ class PaymentVerificationSecurityTest extends TestCase
         $fresh = $transaction->fresh();
         $this->assertSame(Transaction::STATUS_SUCCESS, $fresh->status);
         $this->assertSame('NOSMS12345', $fresh->trx_id);
+        $this->assertSame('01799999999', $fresh->customer_number);
+        $this->assertSame('01799999999', $fresh->officialSenderNumber());
         $this->assertTrue($fresh->metadata['manual_success_sms_suppressed']);
         $this->assertFalse($fresh->metadata['manual_processing_sms_pending']);
         $this->assertSame(0, OutgoingSms::where('transaction_id', $transaction->id)->count());
@@ -822,6 +826,8 @@ class PaymentVerificationSecurityTest extends TestCase
         $this->assertNotNull($matched);
         $this->assertSame(Transaction::STATUS_SUCCESS, $fresh->status);
         $this->assertSame('DELAYNOSMS1', $fresh->trx_id);
+        $this->assertSame('01799999999', $fresh->customer_number);
+        $this->assertSame('01799999999', $fresh->officialSenderNumber());
         $this->assertTrue($fresh->metadata['manual_success_sms_suppressed']);
         $this->assertFalse($fresh->metadata['manual_processing_sms_pending']);
         $this->assertSame(0, OutgoingSms::where('transaction_id', $transaction->id)->count());

@@ -75,9 +75,9 @@ class PaymentVerifierService
                 $update['metadata']['manual_processing_sms_pending'] = false;
             }
 
-            if ($manualFallback?->customer_number) {
-                $update['customer_number'] = $manualFallback->customer_number;
-                $update['normalized_customer_number'] = NumberNormalizer::mobile($manualFallback->customer_number);
+            if ($manualFallback?->customer_number || $smsLog->parsed_customer_number) {
+                $update['customer_number'] = $smsLog->parsed_customer_number ?: $manualFallback->customer_number;
+                $update['normalized_customer_number'] = $smsLog->normalized_customer_number ?: NumberNormalizer::mobile($manualFallback->customer_number);
             }
 
             $transaction->update($update);
@@ -323,8 +323,8 @@ class PaymentVerifierService
             $dueAmount = max(round((float) $transaction->amount - $paidAmount - (float) ($metadata['discount_amount'] ?? 0), 2), 0);
 
             $update = [
-                'customer_number' => $customerNumber ?: $transaction->customer_number,
-                'normalized_customer_number' => $normalizedCustomerNumber,
+                'customer_number' => $smsLog->parsed_customer_number ?: ($customerNumber ?: $transaction->customer_number),
+                'normalized_customer_number' => $smsLog->normalized_customer_number ?: $normalizedCustomerNumber,
                 'sms_device_id' => $smsLog->sms_device_id,
                 'sms_log_id' => $smsLog->id,
                 'metadata' => $metadata,
