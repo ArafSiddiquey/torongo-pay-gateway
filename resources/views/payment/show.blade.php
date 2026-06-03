@@ -4,7 +4,7 @@
     $checkoutBaseAmount = (float) ($transaction->metadata['product_amount'] ?? $transaction->amount);
     $supportContactUrl = trim((string) $settings->get('payment_sms_contact_url', ''));
     $supportContactUrl = $supportContactUrl !== '' ? $supportContactUrl : '#';
-    $supportPhoneDigits = preg_replace('/\D+/', '', trim((string) $settings->get('support_phone_number', '')));
+    $supportPhoneDigits = preg_replace('/\D+/', '', trim((string) $settings->get('support_phone_number', '01640041418')));
     $supportPhoneUrl = '#';
     if ($supportPhoneDigits !== '') {
         $supportPhoneUrl = str_starts_with($supportPhoneDigits, '880')

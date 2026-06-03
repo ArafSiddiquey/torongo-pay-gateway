@@ -142,7 +142,7 @@
                 </div>
                 <div class="field full">
                     <label>Support phone number</label>
-                    <input name="support_phone_number" value="{{ old('support_phone_number', $settings['support_phone_number'] ?? '') }}" placeholder="01640041418">
+                    <input name="support_phone_number" value="{{ old('support_phone_number', $settings['support_phone_number'] ?? '01640041418') }}" placeholder="01640041418">
                 </div>
                 <div class="field full">
                     <label>Confirmation SMS template</label>
