@@ -67,7 +67,7 @@
             <tr>
                 <td><input type="checkbox" aria-label="Select invoice {{ $trx->invoice_id }}"></td>
                 <td>
-                    <b>{{ $officialSender ?: ($inputSender ?: '-') }}</b><br>
+                    <b>{{ $officialSender ?: '-' }}</b><br>
                     @if($senderMismatch)
                         <small>Input: {{ $inputSender }}</small><br>
                     @endif

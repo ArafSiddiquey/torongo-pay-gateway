@@ -11,6 +11,7 @@
             ? 'tel:+'.$supportPhoneDigits
             : (str_starts_with($supportPhoneDigits, '01') ? 'tel:+88'.$supportPhoneDigits : 'tel:+'.$supportPhoneDigits);
     }
+    $checkoutLogoUrl = $settings->invoiceLogoUrl();
 @endphp
 <main class="checkout">
     <section class="gateway-card">
@@ -19,7 +20,7 @@
             <button type="button" onclick="window.close()" aria-label="Close"><svg viewBox="0 0 32 32"><path d="M9 9l14 14"/><path d="M23 9L9 23"/></svg></button>
         </div>
         <div class="brand-row">
-            <img class="shop-logo torongo-shop-logo" src="{{ asset('assets/img/torongo-pay-mark.svg') }}" alt="Torongo Pay">
+            <img class="shop-logo torongo-shop-logo" src="{{ $checkoutLogoUrl }}" alt="{{ $settings->get('gateway_name', 'Brand Name') }}">
             <div class="brand-copy">
                 <h1>{{ $settings->get('gateway_name', 'Brand Name') }}</h1>
                 <button class="details-btn" type="button" onclick="document.getElementById('details').classList.toggle('show')">Details</button>

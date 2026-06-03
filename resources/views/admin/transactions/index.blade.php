@@ -70,7 +70,7 @@
             <tr>
                 <td><b>{{ $trx->invoice_id }}</b><br><small>{{ $trx->order_id ?: 'No order ID' }}</small></td>
                 <td>
-                    <b>{{ $officialSender ?: ($inputSender ?: '-') }}</b>
+                    <b>{{ $officialSender ?: '-' }}</b>
                     @if($senderMismatch)
                         <br><small>Input: {{ $inputSender }}</small>
                     @endif
