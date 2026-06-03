@@ -41,8 +41,8 @@
         .content { position: relative; z-index: 2; }
         .hero { height: 128px; color: #1d3f68; padding: 38px 52px 14px; position: relative; }
         .hero h1 { margin: 0; color: #1f4f83; font-size: 48px; line-height: .95; letter-spacing: 0; font-weight: 900; }
-        .logo-box { position: absolute; right: 52px; top: 38px; width: 260px; height: 48px; text-align: right; }
-        .logo-box img { max-width: 260px; max-height: 43px; object-fit: contain; }
+        .logo-box { position: absolute; right: 52px; top: 30px; width: 360px; height: 78px; text-align: right; }
+        .logo-box img { max-width: 360px; max-height: 78px; object-fit: contain; }
         .meta-wrap { padding: 0 52px 8px; }
         .meta { width: 310px; margin-left: auto; text-align: right; font-size: 14px; line-height: 1.55; font-weight: 700; color: #111827; }
         .meta p { margin: 0; }

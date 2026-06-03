@@ -2055,8 +2055,8 @@ html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
     letter-spacing:0;
 }
 .invoice-logo-box{
-    width:260px;
-    height:48px;
+    width:360px;
+    height:78px;
     display:flex;
     align-items:center;
     justify-content:flex-end;
@@ -2064,7 +2064,7 @@ html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
 .invoice-logo-box img{
     width:auto;
     max-width:100%;
-    max-height:43px;
+    max-height:78px;
     object-fit:contain;
 }
 .invoice-meta-row{
@@ -2176,8 +2176,8 @@ html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
     .invoice-sheet::after{left:-3px;width:68px;top:-60px;bottom:-60px}
     .invoice-hero{min-height:80px;padding:24px 24px 8px;gap:14px}
     .invoice-hero h1{font-size:28px}
-    .invoice-logo-box{width:150px;height:28px}
-    .invoice-logo-box img{width:auto;max-width:100%;max-height:25px;object-fit:contain}
+    .invoice-logo-box{width:220px;height:54px}
+    .invoice-logo-box img{width:auto;max-width:100%;max-height:54px;object-fit:contain}
     .invoice-meta-row{padding:0 24px 6px}
     .invoice-meta{width:auto;font-size:8px;line-height:1.45}
     .invoice-parties{grid-template-columns:1fr 1fr;gap:18px;padding:20px 24px 12px}
