@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.PowerManager;
 import android.provider.Settings;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
@@ -102,6 +103,7 @@ public class MainActivity extends Activity {
         renderActions();
         updateStatus();
         KeepAliveService.start(this);
+        ensureBackgroundAccess();
         startHeartbeat();
     }
 
@@ -109,6 +111,7 @@ public class MainActivity extends Activity {
         super.onResume();
         updateStatus();
         KeepAliveService.start(this);
+        ensureBackgroundAccess();
     }
 
     @Override protected void onDestroy() {
@@ -211,6 +214,7 @@ public class MainActivity extends Activity {
             updateStatus();
             SyncClient.heartbeat(this);
             KeepAliveService.start(this);
+            ensureBackgroundAccess();
             Toast.makeText(this, "Setup saved", Toast.LENGTH_SHORT).show();
         });
     }
@@ -590,6 +594,27 @@ public class MainActivity extends Activity {
         if (!permissions.isEmpty()) {
             requestPermissions(permissions.toArray(new String[0]), 10);
         }
+    }
+
+    private void ensureBackgroundAccess() {
+        if (!hasSetup()) return;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return;
+        try {
+            PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
+            if (powerManager == null || powerManager.isIgnoringBatteryOptimizations(getPackageName())) {
+                return;
+            }
+            SharedPreferences prefs = prefs();
+            long lastPrompt = prefs.getLong("battery_prompt_at", 0);
+            long now = System.currentTimeMillis();
+            if (now - lastPrompt < 24L * 60L * 60L * 1000L) {
+                return;
+            }
+            prefs.edit().putLong("battery_prompt_at", now).apply();
+            Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+            intent.setData(Uri.parse("package:" + getPackageName()));
+            startActivity(intent);
+        } catch (Exception ignored) {}
     }
 
     private SharedPreferences prefs() {
